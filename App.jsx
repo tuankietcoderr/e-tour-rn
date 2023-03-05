@@ -16,6 +16,7 @@ import {
     LearnMoreLinks,
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen'
+import { TailwindProvider } from 'tailwindcss-react-native'
 
 function Section({ children, title }) {
     const isDarkMode = useColorScheme() === 'dark'
@@ -53,33 +54,11 @@ function App() {
     }
 
     return (
-        <SafeAreaView style={backgroundStyle}>
-            <StatusBar
-                barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-                backgroundColor={backgroundStyle.backgroundColor}
-            />
-            <ScrollView contentInsetAdjustmentBehavior="automatic" style={backgroundStyle}>
-                <Header />
-                <View
-                    style={{
-                        backgroundColor: isDarkMode ? Colors.black : Colors.white,
-                    }}
-                >
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.tsx</Text> to change this screen and
-                        then come back to see your edits.
-                    </Section>
-                    <Section title="See Your Changes">
-                        <ReloadInstructions />
-                    </Section>
-                    <Section title="Debug">
-                        <DebugInstructions />
-                    </Section>
-                    <Section title="Learn More">Read the docs to discover what to do next:</Section>
-                    <LearnMoreLinks />
-                </View>
-            </ScrollView>
-        </SafeAreaView>
+        <TailwindProvider>
+            <View style={styles.container} className="flex h-full items-center justify-center">
+                <Text className="text-red-700">Open up App.js to start working on your app!</Text>
+            </View>
+        </TailwindProvider>
     )
 }
 
